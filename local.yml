@@ -1,0 +1,62 @@
+- hosts: 'localhost'
+  become: true
+  pre_tasks:
+    - name: Update pacman cache
+      community.general.pacman:
+        update_cache: true
+      tags:
+        - zsh
+        - dotfiles
+        - neovim
+
+  tasks:
+    - name: Dotfile tasks
+      include_tasks: tasks/dotfiles.yml
+
+    - name: Install neovim
+      community.general.pacman:
+        name: neovim
+        state: present
+      tags:
+        - neovim
+
+    - name: Install tmux
+      community.general.pacman:
+        name: tmux
+        state: present
+      tags:
+        - tmux
+
+    - name: Install fzf
+      community.general.pacman:
+        name: fzf
+        state: present
+      tags:
+        - fzf
+
+    - name: Install zsh
+      community.general.pacman:
+        name: zsh
+        state: present
+      tags:
+        - zsh
+
+    - name: Change Shell
+      shell: chsh -s `which zsh`
+      tags:
+        - zsh
+
+    - name: Install ohmyzh
+      shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      tags:
+        - zsh
+
+    - name: Install zsh autosuggestions
+      ansible.builtin.git:
+        repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+        dest: '~/.oh-my-zsh/plugins/zsh-autosuggestions'
+      tags:
+        - zsh
+
+    - name: Update zshrc
+      shell: sed -i 's/(git/(git zsh-autosuggestions/' ~/.zshrc

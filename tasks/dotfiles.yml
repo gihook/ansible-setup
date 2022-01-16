@@ -1,0 +1,14 @@
+- name: Install neovim
+  community.general.pacman:
+    name: stow
+    state: present
+  tags:
+    - dotfiles
+
+- name: Install zsh autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/gihook/config-files.git'
+    dest: '~/github'
+  tags:
+    - dotfiles
+
