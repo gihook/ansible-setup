@@ -5,8 +5,7 @@ RUN pacman -Sy && pacman -S --noconfirm git && pacman -S --noconfirm ansible
 COPY ansible-run.sh /
 RUN chmod +x ansible-run.sh
 
-ADD tasks/ /tasks
 COPY local.yml /
-
+ADD tasks/ /tasks
 
 CMD ["sh"]

@@ -5,19 +5,14 @@
   tags:
     - dotfiles
 
-- name: Install zsh autosuggestions
+- name: Clone dotfiles
   git:
     repo: 'https://github.com/gihook/config-files.git'
     dest: '~/github/config-files'
   tags:
     - dotfiles
 
-- name: Stow tmux
-  shell: cd ~/github/config-files && stow --target ~ -S tmux
-  tags:
-    - dotfiles
-
-- name: Stow nvim
-  shell: cd ~/github/config-files && stow --target ~ -S nvim
+- name: Install dotfiles 
+  shell: cd ~/github/config-files && ./install.sh
   tags:
     - dotfiles
