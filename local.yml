@@ -13,12 +13,8 @@
     - name: Dotfile tasks
       include_tasks: tasks/dotfiles.yml
 
-    - name: Install neovim
-      community.general.pacman:
-        name: neovim
-        state: present
-      tags:
-        - neovim
+    - name: Neovim tasks
+      include_tasks: tasks/nvim.yml
 
     - name: Install tmux
       community.general.pacman:
@@ -26,6 +22,20 @@
         state: present
       tags:
         - tmux
+
+    - name: Install tmux plugin manager
+      git:
+        repo: 'https://github.com/tmux-plugins/tpm'
+        dest: '~/.tmux/plugins/tpm'
+      tags:
+        - tmux
+
+    - name: Install exa
+      community.general.pacman:
+        name: exa
+        state: present
+      tags:
+        - exa
 
     - name: Install fzf
       community.general.pacman:
@@ -51,6 +61,7 @@
       tags:
         - zsh
 
+    # TODO: this needs to be corrected
     - name: Install zsh autosuggestions
       ansible.builtin.git:
         repo: 'https://github.com/zsh-users/zsh-autosuggestions'

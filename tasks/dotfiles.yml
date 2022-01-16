@@ -1,4 +1,4 @@
-- name: Install neovim
+- name: Install stow
   community.general.pacman:
     name: stow
     state: present
@@ -6,9 +6,18 @@
     - dotfiles
 
 - name: Install zsh autosuggestions
-  ansible.builtin.git:
+  git:
     repo: 'https://github.com/gihook/config-files.git'
-    dest: '~/github'
+    dest: '~/github/config-files'
   tags:
     - dotfiles
 
+- name: Stow tmux
+  shell: cd ~/github/config-files && stow --target ~ -S tmux
+  tags:
+    - dotfiles
+
+- name: Stow nvim
+  shell: cd ~/github/config-files && stow --target ~ -S nvim
+  tags:
+    - dotfiles
