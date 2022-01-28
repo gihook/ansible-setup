@@ -1,4 +1,7 @@
 - hosts: 'localhost'
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
   become: true
   pre_tasks:
     - name: Update pacman cache
@@ -14,6 +17,9 @@
 
     - name: Neovim tasks
       include_tasks: tasks/nvim.yml
+
+    - name: SSH tasks
+      include_tasks: tasks/ssh.yml
 
     - name: Install tmux
       community.general.pacman:
