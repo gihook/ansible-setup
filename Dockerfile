@@ -8,5 +8,6 @@ RUN chmod +x ansible-run.sh
 COPY local.yml /
 ADD tasks/ /tasks
 ADD .ssh/ /.ssh
+ADD secrets/ /secrets
 
 CMD ["sh"]
