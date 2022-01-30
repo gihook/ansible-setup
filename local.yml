@@ -2,26 +2,27 @@
   vars:
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-  become: true
   pre_tasks:
     - name: Update pacman cache
       community.general.pacman:
         update_cache: true
+      become: true
       tags:
         - dotfiles
         - neovim
 
   tasks:
+    - include_tasks: tasks/secrets.yml
     - include_tasks: tasks/dotfiles.yml
     - include_tasks: tasks/github.yml
     - include_tasks: tasks/nvim.yml
     - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/secrets.yml
 
     - name: Install tmux
       community.general.pacman:
         name: tmux
         state: present
+      become: true
       tags:
         - tmux
 
@@ -36,6 +37,7 @@
       community.general.pacman:
         name: exa
         state: present
+      become: true
       tags:
         - exa
 
@@ -46,4 +48,11 @@
         dest: '~/.fzf'
 
     - name: Install fzf bindings
-      shell: ~/.fzf/install
+      shell: ~/.fzf/install --completion --key-bindings --no-update-rc
+
+    - name: Install xclip
+      community.general.pacman:
+        name: xclip
+        state: present
+      become: true
+

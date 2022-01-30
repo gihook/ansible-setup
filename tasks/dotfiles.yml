@@ -2,13 +2,14 @@
   community.general.pacman:
     name: stow
     state: present
+  become: true
   tags:
     - dotfiles
 
 - name: Clone dotfiles
   git:
-    repo: 'https://github.com/gihook/config-files.git'
-    dest: '~/github/config-files'
+    repo: 'git@github.com:gihook/config-files.git'
+    dest: "~/github/config-files"
   tags:
     - dotfiles
 
