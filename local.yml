@@ -56,3 +56,10 @@
         state: present
       become: true
 
+    # TODO: move this to separate file
+    - name: Install nodejs, npm, yarn
+      community.general.pacman:
+        name: [nodejs, npm, yarn]
+        state: present
+      become: true
+
