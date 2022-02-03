@@ -1,1 +1,1 @@
-sudo docker run --rm -it my-arch
+sudo docker run --name ansible-test --rm -it my-arch
