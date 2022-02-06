@@ -8,8 +8,8 @@
 
 - name: Clone dotfiles
   git:
-    repo: 'https://github.com/gihook/config-files.git'
-    dest: "~/github/config-files"
+    repo: 'git@github.com:gihook/config-files.git'
+    dest: '~/github/config-files'
   tags:
     - dotfiles
 

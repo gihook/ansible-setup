@@ -1,7 +1,8 @@
 - name: Clone scripts repository
   git:
-    repo: 'https://github.com/gihook/config-files.git'
-    dest: "~/github/scripts"
+    repo: 'git@github.com:gihook/scripts.git'
+    dest: '~/github/scripts'
+    accept_hostkey: yes
   tags:
     - github
     - secrets
