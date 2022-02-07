@@ -10,6 +10,7 @@
   git:
     repo: 'git@github.com:gihook/config-files.git'
     dest: '~/github/config-files'
+    accept_hostkey: yes
   tags:
     - dotfiles
 
