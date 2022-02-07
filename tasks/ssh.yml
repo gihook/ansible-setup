@@ -24,3 +24,20 @@
   tags:
     - dotfiles
     - ssh
+
+- name: Install work ssh key
+  copy: 
+    src: "./.ssh/work_id_rsa"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/work_id_rsa"
+    mode: 0600
+  tags:
+    - dotfiles
+    - ssh
+- name: Install work ssh public key
+  copy: 
+    src: "./.ssh/work_id_rsa.pub"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/work_id_rsa.pub"
+    mode: 0644
+  tags:
+    - dotfiles
+    - ssh
